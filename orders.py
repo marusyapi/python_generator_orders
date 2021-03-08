@@ -1,11 +1,9 @@
-import logging
-import yaml
+from datetime import datetime, timedelta
+
 from generator import *
 from constants import *
 
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-                    level=logging.INFO)
-
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 items_range = [0, ORDERS_COUNT]  # распаковка аргументов
