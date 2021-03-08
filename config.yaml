@@ -1,0 +1,117 @@
+Orders:
+  ordersRed: 600
+  ordersGreen: 1200
+  ordersBlue: 200
+  count_orders: 2000
+
+Records:
+  records_Red: 3
+  records_Green: 4
+  records_Blue: 3
+
+data_format: "%d.%m.%Y %H:%M:%S.%f"
+
+Note:
+  - "Note1"
+  - "Note2"
+  - "Note3"
+  - "Note4"
+  - "Note5"
+  - "Note6"
+
+Tag:
+  - "Tag1"
+  - "Tag2"
+  - "Tag3"
+  - "Tag4"
+  - "Tag5"
+  - "Tag6"
+  - "Tag7"
+  - "Tag8"
+  - "Tag9"
+  - "Tag10"
+
+LCG:
+  modulus: 299804100060
+  multipler: 1.00000000003
+  increment: 2
+  seed: 299004100060
+
+Instrument:
+  List:
+    CADGBP: 0.5717
+    CHFEUR: 0.9247
+    CNYUSD: 0.1549
+    DKKPLN: 0.60192
+    EURUSD: 1.20396
+    GBRRUB: 104.153
+    JPYTRY: 0.06851
+    NZDEUR: 0.5945
+    PLNRSD: 25.9893
+    SEKUSD: 0.1187
+    USDUAN: 28.05
+
+Side:
+  - "buy"
+  - "sell"
+
+Volume_init:
+  min: 1000
+  max: 1000000
+
+Volume_fill:
+  min: 1000
+  max: 1000000
+
+Zone:
+  Red:
+    start_date: "27.01.2020 17:21:21.211"
+    end_date: "27.01.2020 21:21:23.608"
+    status:
+      0:
+        - "in progress"
+        - "fill"
+        - "done"
+      1:
+        - "in progress"
+        - "fill"
+        - "done"
+      2:
+        - "in progress"
+        - "fill"
+        - "done"
+  Green:
+    start_date: "28.01.2020 13:30:30.333"
+    end_date: "28.01.2020 21:30:33.421"
+    status:
+      1:
+        - "new"
+        - "in progress"
+        - "fill"
+        - "done"
+      2:
+        - "new"
+        - "in progress"
+        - "fill"
+        - "done"
+      3:
+        - "new"
+        - "in progress"
+        - "fill"
+        - "done"
+  Blue:
+    start_date: "29.01.2020 13:19:19.109"
+    end_date: "29.01.2020 17:19:20.347"
+    status:
+      1:
+        - "new"
+        - "in progress"
+        - "fill"
+      2:
+        - "new"
+        - "in progress"
+        - "fill"
+      3:
+        - "new"
+        - "in progress"
+        - "fill"
