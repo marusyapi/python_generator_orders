@@ -9,7 +9,7 @@ Records:
   records_Green: 4
   records_Blue: 3
 
-data_format: "%d.%m.%Y %H:%M:%S.%f"
+date_format: "%d.%m.%Y %H:%M:%S.%f"
 
 Note:
   - "Note1"
@@ -74,44 +74,44 @@ Zone:
         - "done"
       1:
         - "in progress"
-        - "fill"
+        - "partially fill"
         - "done"
       2:
         - "in progress"
-        - "fill"
+        - "cancel"
         - "done"
   Green:
     start_date: "28.01.2020 13:30:30.333"
     end_date: "28.01.2020 21:30:33.421"
     status:
-      1:
+      0:
         - "new"
         - "in progress"
         - "fill"
+        - "done"
+      1:
+        - "new"
+        - "in progress"
+        - "partially fill"
         - "done"
       2:
         - "new"
         - "in progress"
-        - "fill"
-        - "done"
-      3:
-        - "new"
-        - "in progress"
-        - "fill"
+        - "cancel"
         - "done"
   Blue:
     start_date: "29.01.2020 13:19:19.109"
     end_date: "29.01.2020 17:19:20.347"
     status:
+      0:
+        - "new"
+        - "in progress"
+        - "fill"
       1:
         - "new"
         - "in progress"
-        - "fill"
+        - "partially fill"
       2:
         - "new"
         - "in progress"
-        - "fill"
-      3:
-        - "new"
-        - "in progress"
-        - "fill"
+        - "cancel"
