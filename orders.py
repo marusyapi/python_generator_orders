@@ -16,17 +16,18 @@ with open(r'config.yaml') as configfile:
 
 
 def generate_list_id():
-    return [hex(round(2000000000000 + i * 10 + sequence.__next__())) for i in range(*items_range)]
+    return [hex(round(ID_INITIAL + i * 10 + sequence.__next__())) for i in range(*items_range)]
 
 
 def generate_list_instrument():
     return [LIST_OF_INSTRUMENTS[round(sequence.__next__() * 10) % INSTRUMENTS_COUNT] for i in range(*items_range)]
 
+
 def generate_list_px(list):
     result = []
     for item in list:
         if round(sequence.__next__()) % 2 == 0:
-            result.append((item[0], round(item[1] + (sequence.__next__() / 1000), 8)))
+            result.append([item[0], round(item[1] + (sequence.__next__() / 1000), 8)])
         else:
             result.append([item[0], round(item[1] - (sequence.__next__() / 1000), 8)])
     return result
@@ -56,7 +57,7 @@ def generate_list_dates(total_range, init_date, end_date):
     time_between = round((end_date - initial_date).total_seconds())
     time_step = round(time_between / total_range)
     return [
-        (initial_date + timedelta(seconds=i) + timedelta(milliseconds=sequence.__next__() * 10)).__format__(DATE_FORMAT)
+        (initial_date + timedelta(seconds=i) + timedelta(milliseconds=sequence.__next__() * 10))
         for i in range(0, time_between, time_step)
     ]
 

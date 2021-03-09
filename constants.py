@@ -4,6 +4,7 @@ import yaml
 with open(r'config.yaml') as configfile:
     config = yaml.load(configfile, Loader=yaml.FullLoader)
 
+ID_INITIAL = int(config['id_initial'], 16)
 ORDERS_COUNT = config['Orders']['count_orders']
 RED_ZONE_ORDERS_COUNT = config['Orders']['ordersRed']
 GREEN_ZONE_ORDERS_COUNT = config['Orders']['ordersGreen']
