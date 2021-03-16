@@ -1,0 +1,11 @@
+2021-03-16 13:00:24 - __main__ - INFO - Generating a list of orders
+2021-03-16 13:00:24 - __main__ - INFO - The list's been generated successfully.
+2021-03-16 13:00:24 - __main__ - INFO - Writing a list to a csv file. 
+Path: orders.csv.
+2021-03-16 13:00:24 - __main__ - INFO - Reading a csv file. 
+Path: orders.csv.
+2021-03-16 13:00:26 - __main__ - INFO - The list's been generated successfully.
+2021-03-16 13:00:26 - __main__ - INFO - Writing a queries to a csv file. 
+Path: sql.csv.
+2021-03-16 13:00:26 - __main__ - INFO - Reading a sql csv file. 
+Path: sql.csv.
