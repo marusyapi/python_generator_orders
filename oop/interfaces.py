@@ -3,7 +3,7 @@ from abc import abstractmethod, ABC
 
 class LCGenerator(ABC):
     @abstractmethod
-    def generate_value(self):
+    def generate_value(self, **kwargs):
         pass
 
 

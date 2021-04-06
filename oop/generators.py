@@ -102,3 +102,16 @@ class TagGenerator(LCGenerator.LCGenerator):
 
     def generate_value(self):
         return LIST_OF_TAGS[round(self.sequence.__next__() * 10) % TAGS_COUNT]
+
+
+id_generator = IDGenerator()
+instrument_generator = InstrumentGenerator()
+px_init_value = PxGenerator()
+px_fill_value = PxGenerator()
+volume_init_generator = VolumeGenerator()
+volume_fill_generator = VolumeGenerator()
+side_generator = SideGenerator()
+status_generator = StatusGenerator()
+date_generator = DateGenerator()
+note_generator = NoteGenerator()
+tag_generator = TagGenerator()
