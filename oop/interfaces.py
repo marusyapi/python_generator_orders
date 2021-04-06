@@ -1,38 +1,44 @@
 from abc import abstractmethod, ABC
 
 
-class ILCGenerator(ABC):
+class LCGenerator(ABC):
     @abstractmethod
     def generate_value(self):
         pass
 
 
-class IOrderBuilder(ABC):
+class Builder(ABC):
     @abstractmethod
-    def build(self,
-              id,
-              instrument,
-              px_init,
-              px_fill,
-              volume_init,
-              volume_fill,
-              side,
-              status,
-              date,
-              note,
-              tag) -> list:
+    def build(self) -> list:
         pass
 
 
-class IOrderListStorageTemplate(ABC):
+class Director:
+    def __init__(self) -> None:
+        self._builder = None
+
+    @property
+    def builder(self) -> Builder:
+        return self._builder
+
+    @builder.setter
+    def builder(self, builder: Builder) -> None:
+        self._builder = builder
+
+
+class OrderListStorageTemplate(ABC):
     @abstractmethod
-    def create_path(self, a):
+    def create_path(self, **kwargs):
         pass
 
     @abstractmethod
-    def write_to(self, a, b, c):
+    def write_to(self, **kwargs):
         pass
 
     @abstractmethod
-    def read_from(self, a):
+    def read_from(self, **kwargs):
+        pass
+
+    @abstractmethod
+    def connection(self):
         pass
