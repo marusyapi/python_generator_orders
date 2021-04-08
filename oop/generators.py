@@ -22,7 +22,8 @@ class InstrumentGenerator(LCGenerator):
 
     def generate_value(self):
         seq = self.sequence.__next__()
-        return LIST_OF_INSTRUMENTS[round(seq * 10) % INSTRUMENTS_COUNT]
+        instrument_px_list = list(INSTRUMENT_PX_DICT.items())
+        return instrument_px_list[round(seq * 10) % INSTRUMENTS_COUNT][0]
 
 
 class PxGenerator(LCGenerator):
@@ -30,15 +31,12 @@ class PxGenerator(LCGenerator):
         self.sequence = LCGenerator.get_sequence()
 
     def generate_value(self, **kwargs):
-        px_list = kwargs.get("px")
-
-        if type(px_list[0]) == tuple:
-            px_list = list(px_list[0])
-
+        instrument = kwargs.get("instrument")
+        instrument = INSTRUMENT_PX_DICT.get(instrument)
         if round(self.sequence.__next__()) % 2 == 0:
-            return px_list[LEFT], round(px_list[RIGHT] + (self.sequence.__next__() / 1000), 8)
+            return round(instrument + (self.sequence.__next__() / 1000), 8)
         else:
-            return px_list[LEFT], round(px_list[RIGHT] - (self.sequence.__next__() / 1000), 8)
+            return round(instrument - (self.sequence.__next__() / 1000), 8)
 
 
 class VolumeGenerator(LCGenerator):
@@ -83,12 +81,13 @@ class DateGenerator(LCGenerator):
 
         initial_date = datetime.strptime(date_init, DATE_FORMAT)
         end_date = datetime.strptime(date_end, DATE_FORMAT)
-        time_between = round((end_date - initial_date).total_seconds())
-        time_step = round(time_between)
-        return [
-            (initial_date + timedelta(seconds=i) + timedelta(milliseconds=self.sequence.__next__() * 10))
-            for i in range(0, time_between, time_step)
-        ]
+        time_between = (end_date - initial_date).total_seconds()
+        time_step = time_between + self.sequence.__next__() * 10
+
+        milliseconds = timedelta(milliseconds=time_step)
+        self.current = initial_date + milliseconds
+
+        return self.current
 
 
 class NoteGenerator(LCGenerator):
@@ -109,10 +108,8 @@ class TagGenerator(LCGenerator):
 
 id_generator = IDGenerator()
 instrument_generator = InstrumentGenerator()
-px_init_value = PxGenerator()
-px_fill_value = PxGenerator()
-volume_init_generator = VolumeGenerator()
-volume_fill_generator = VolumeGenerator()
+px_generator = PxGenerator()
+volume_generator = VolumeGenerator()
 side_generator = SideGenerator()
 status_generator = StatusGenerator()
 date_generator = DateGenerator()

@@ -13,6 +13,13 @@ class DBStorage(OrderListStorageTemplate):
         conn = sqlite3.connect('TestDB1.db')
         return conn
 
+    def create_tale(self):
+        conn = self.connection()
+        curs = conn.cursor()
+        curs.execute('CREATE TABLE HISTORY_ORDERS (id, instrument, px_init, px_fill, volume_init, volume_fill, '
+                             'side, status, date, note, tag)')
+        conn.commit()
+
     def read_from(self, **kwargs):
         pass
 
@@ -23,21 +30,11 @@ class DBStorage(OrderListStorageTemplate):
 
     def write_to(self, **kwargs):
         data = kwargs.get("data")
-        # conn = self.connection()
-        # curs = conn.cursor()
-        # curs.execute('CREATE TABLE ORDERS (id, instrument, px_init, px_fill, volume_init, volume_fill, '
-        #                           'side, status, date, note, tag)')
-        # conn.commit()
-        #
-        # df = pandas.DataFrame(data=data, columns=['id', 'instrument', 'px_init', 'px_fill', 'volume_init', 'volume_fill',
-        #                                           'side', 'status', 'date', 'note', 'tag'])
-        # df.to_sql('Orders', conn, if_exists='replace', index=False)
+        conn = self.connection()
 
-        orders = Table('Orders')
-        orders_sql_list = []
-        for i in data:
-            orders_sql_list.append((Query.from_(orders).into(SQL_ORDER_ATTRIBUTES).insert(i)).get_sql())
-        return orders_sql_list
+        df = pandas.DataFrame(data=data,
+                              columns=['id', 'instrument', 'px_init', 'px_fill', 'volume_init', 'volume_fill',
+                                       'side', 'status', 'date', 'note', 'tag'])
+        df.to_sql('Orders', conn, if_exists='replace', index=False)
 
-
-
+        return df

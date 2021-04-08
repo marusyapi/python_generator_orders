@@ -46,15 +46,15 @@ Zone:
     end_date: "27.01.2020 21:21:23.608"
     status:
       0:
-        - "in progress"
+        - "in process"
         - "fill"
         - "done"
       1:
-        - "in progress"
+        - "in process"
         - "partially fill"
         - "done"
       2:
-        - "in progress"
+        - "in process"
         - "cancel"
         - "done"
   Green:
@@ -63,17 +63,17 @@ Zone:
     status:
       0:
         - "new"
-        - "in progress"
+        - "in process"
         - "fill"
         - "done"
       1:
         - "new"
-        - "in progress"
+        - "in process"
         - "partially fill"
         - "done"
       2:
         - "new"
-        - "in progress"
+        - "in process"
         - "cancel"
         - "done"
   Blue:
@@ -82,15 +82,15 @@ Zone:
     status:
       0:
         - "new"
-        - "in progress"
+        - "in process"
         - "fill"
       1:
         - "new"
-        - "in progress"
+        - "in process"
         - "partially fill"
       2:
         - "new"
-        - "in progress"
+        - "in process"
         - "cancel"
 
 Note:

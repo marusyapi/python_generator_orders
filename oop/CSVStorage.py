@@ -23,3 +23,6 @@ class CSVStorage(OrderListStorageTemplate):
 
     def connection(self):
         pass
+
+    def create_tale(self):
+        pass

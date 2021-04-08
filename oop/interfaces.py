@@ -42,3 +42,7 @@ class OrderListStorageTemplate(ABC):
     @abstractmethod
     def connection(self):
         pass
+
+    @abstractmethod
+    def create_tale(self):
+        pass
