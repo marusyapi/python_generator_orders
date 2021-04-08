@@ -2,30 +2,32 @@ from random import random
 
 from interfaces import LCGenerator
 from datetime import datetime, timedelta
-import LCGenerator
+from LCGenerator import LCGenerator
 from oop.constants import *
 
 
-class IDGenerator(LCGenerator.LCGenerator):
+class IDGenerator(LCGenerator):
     def __init__(self):
-        self.sequence = LCGenerator.LCGenerator.get_sequence()
+        self.sequence = LCGenerator.get_sequence()
+        self.current = 0
 
     def generate_value(self):
-        return hex(round(int("aefbcd1234", 16) + self.sequence.__next__() * 10 + self.sequence.__next__()))
+        self.current += round(int("aefbcd1234", 16) + self.sequence.__next__() * 10 + self.sequence.__next__())
+        return hex(self.current)
 
 
-class InstrumentGenerator(LCGenerator.LCGenerator):
+class InstrumentGenerator(LCGenerator):
     def __init__(self):
-        self.sequence = LCGenerator.LCGenerator.get_sequence()
+        self.sequence = LCGenerator.get_sequence()
 
     def generate_value(self):
         seq = self.sequence.__next__()
         return LIST_OF_INSTRUMENTS[round(seq * 10) % INSTRUMENTS_COUNT]
 
 
-class PxGenerator(LCGenerator.LCGenerator):
+class PxGenerator(LCGenerator):
     def __init__(self):
-        self.sequence = LCGenerator.LCGenerator.get_sequence()
+        self.sequence = LCGenerator.get_sequence()
 
     def generate_value(self, **kwargs):
         px_list = kwargs.get("px")
@@ -39,9 +41,9 @@ class PxGenerator(LCGenerator.LCGenerator):
             return px_list[LEFT], round(px_list[RIGHT] - (self.sequence.__next__() / 1000), 8)
 
 
-class VolumeGenerator(LCGenerator.LCGenerator):
+class VolumeGenerator(LCGenerator):
     def __init__(self):
-        self.sequence = LCGenerator.LCGenerator.get_sequence()
+        self.sequence = LCGenerator.get_sequence()
 
     def generate_value(self):
 
@@ -52,17 +54,17 @@ class VolumeGenerator(LCGenerator.LCGenerator):
                 return abs(round(item - (self.sequence.__next__() * 100), 2))
 
 
-class SideGenerator(LCGenerator.LCGenerator):
+class SideGenerator(LCGenerator):
     def __init__(self):
-        self.sequence = LCGenerator.LCGenerator.get_sequence()
+        self.sequence = LCGenerator.get_sequence()
 
     def generate_value(self):
         return LIST_OF_SIDES[round(self.sequence.__next__()) % SIDES_COUNT]
 
 
-class StatusGenerator(LCGenerator.LCGenerator):
+class StatusGenerator(LCGenerator):
     def __init__(self):
-        self.sequence = LCGenerator.LCGenerator.get_sequence()
+        self.sequence = LCGenerator.get_sequence()
 
     def generate_value(self, **kwargs):
         status_list = kwargs.get("status_list")
@@ -70,9 +72,10 @@ class StatusGenerator(LCGenerator.LCGenerator):
         return status_list[round(self.sequence.__next__()) % len(status_list)]
 
 
-class DateGenerator(LCGenerator.LCGenerator):
+class DateGenerator(LCGenerator):
     def __init__(self):
-        self.sequence = LCGenerator.LCGenerator.get_sequence()
+        self.sequence = LCGenerator.get_sequence()
+        self.current = 0
 
     def generate_value(self, **kwargs):
         date_init = kwargs.get("date_init")
@@ -88,17 +91,17 @@ class DateGenerator(LCGenerator.LCGenerator):
         ]
 
 
-class NoteGenerator(LCGenerator.LCGenerator):
+class NoteGenerator(LCGenerator):
     def __init__(self):
-        self.sequence = LCGenerator.LCGenerator.get_sequence()
+        self.sequence = LCGenerator.get_sequence()
 
     def generate_value(self):
         return LIST_OF_NOTES[round(self.sequence.__next__() * 10) % NOTES_COUNT]
 
 
-class TagGenerator(LCGenerator.LCGenerator):
+class TagGenerator(LCGenerator):
     def __init__(self):
-        self.sequence = LCGenerator.LCGenerator.get_sequence()
+        self.sequence = LCGenerator.get_sequence()
 
     def generate_value(self):
         return LIST_OF_TAGS[round(self.sequence.__next__() * 10) % TAGS_COUNT]
